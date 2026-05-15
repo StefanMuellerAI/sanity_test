@@ -89,6 +89,26 @@ body {
   box-shadow: 0 12px 40px rgba(230, 46, 116, 0.35);
 }
 
+.btn-kontakt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+  background: linear-gradient(135deg, #4a2ee6 0%, #8893e6 100%);
+  color: #ffffff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  box-shadow: 0 6px 20px rgba(74, 46, 230, 0.35);
+}
+.btn-kontakt:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 30px rgba(74, 46, 230, 0.45);
+}
+
 .btn-ghost {
   display: inline-flex;
   align-items: center;

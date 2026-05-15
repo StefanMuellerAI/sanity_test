@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogCard } from "@/components/blog-card";
 import { SchulungCard } from "@/components/schulung-card";
+import { ServiceCards } from "@/components/service-cards";
 import {
   OrganizationJsonLd,
   WebSiteJsonLd,
@@ -13,8 +14,7 @@ import { isSanityConfigured } from "@/sanity/env";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title:
-    "Kuenstliche Intelligenz Schulung, Beratung & Software-Entwicklung",
+  title: "Kuenstliche Intelligenz Schulung, Beratung & Software-Entwicklung",
   description:
     "StefanAI - Spezialist fuer Kuenstliche Intelligenz Schulungen, KI-Beratung und KI-Software-Entwicklung. Praxisnahe Workshops zu ChatGPT, Generative KI, RAG und AI Agents fuer Unternehmen in DACH.",
   alternates: { canonical: "/" },
@@ -36,11 +36,11 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 -left-32 w-[600px] h-[600px] rounded-full bg-cyber-sunrise opacity-30 blur-3xl" />
-          <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-holo-dream opacity-20 blur-3xl" />
+          <div className="absolute -top-40 -left-32 w-[700px] h-[700px] rounded-full bg-cyber-sunrise opacity-40 blur-3xl" />
+          <div className="absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full bg-holo-dream opacity-25 blur-3xl" />
         </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-24 pb-20 lumin-frost">
+        <div className="max-w-6xl mx-auto px-6 pt-20 pb-20 lumin-frost">
           {!isSanityConfigured && (
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyber-gelb/40 bg-cyber-gelb/10 px-4 py-2 text-xs text-cyber-gelb">
               <span className="w-2 h-2 rounded-full bg-cyber-gelb animate-pulse" />
@@ -50,40 +50,34 @@ export default async function HomePage() {
 
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-12 items-center">
             <div>
-              <p className="ki-highlight text-cyber-tuerkis text-sm mb-6">
-                Kuenstliche Intelligenz fuer Unternehmen
-              </p>
               <h1 className="heading-caps text-4xl sm:text-5xl lg:text-6xl">
-                Kuenstliche Intelligenz{" "}
-                <span className="text-cyber-sunrise">
-                  Schulung, Beratung & Software-Entwicklung
-                </span>
+                KI ist gekommen,{" "}
+                <span className="text-cyber-sunrise">um zu bleiben.</span>{" "}
+                Ihre Organisation auch?
               </h1>
-              <p className="mt-6 max-w-xl text-lg text-white/80 leading-relaxed">
-                StefanAI ist dein Partner fuer praxisnahe KI-Schulungen,
-                strategische KI-Beratung und massgeschneiderte
-                Software-Entwicklung mit Generativer KI. Wir bringen ChatGPT,
-                RAG und AI Agents verlaesslich in produktive Anwendungen.
+              <p className="mt-6 max-w-xl text-lg text-white/85 leading-relaxed">
+                StefanAI ist dein Partner fuer Kuenstliche Intelligenz im
+                Unternehmen - Schulung, Beratung und Software-Entwicklung aus
+                einer Hand. Praxisnah, ehrlich und ohne KI-Hype.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link href="#schulungen" className="btn-primary">
-                  Portfolio entdecken
+                <Link href="#kontakt" className="btn-kontakt">
+                  Kontakt aufnehmen
                 </Link>
-                <Link href="#kontakt" className="btn-ghost">
-                  Beratung anfragen
+                <Link href="#leistungen" className="btn-ghost">
+                  Leistungen entdecken
                 </Link>
               </div>
             </div>
 
             <div className="relative aspect-[4/3] lg:aspect-square w-full max-w-xl mx-auto lg:mx-0">
-              {/* Glow hinter dem Bild - betont die V-Form */}
               <div
                 aria-hidden
                 className="absolute inset-0 bg-cyber-sunrise opacity-30 blur-3xl rounded-full"
               />
               <Image
                 src="/keyvisual.png"
-                alt="Digit, der KI-Co-Host von StefanAI, haelt einen leuchtenden Wuerfel in einer Cyberpunk-Stadt"
+                alt="Digit, der KI-Co-Host von StefanAI, in einer Cyberpunk-Stadt"
                 fill
                 priority
                 sizes="(min-width: 1024px) 540px, (min-width: 640px) 80vw, 100vw"
@@ -91,36 +85,90 @@ export default async function HomePage() {
               />
             </div>
           </div>
-
-          <dl className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl">
-            {[
-              { k: "120+", v: "Schulungstage / Jahr" },
-              { k: "98%", v: "Weiterempfehlung" },
-              { k: "6", v: "Formate" },
-              { k: "1:1", v: "Coaching auf Wunsch" },
-            ].map((item) => (
-              <div key={item.v}>
-                <dt className="heading text-3xl text-cyber-sunrise">{item.k}</dt>
-                <dd className="text-xs uppercase tracking-wider text-white/60 mt-1">
-                  {item.v}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
+
+      {/* Welcome / Ueber */}
+      <section id="ueber" className="max-w-6xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 items-start">
+          <div>
+            <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">
+              Willkommen
+            </p>
+            <h2 className="heading text-4xl sm:text-5xl mb-6">
+              Willkommen in der Welt der{" "}
+              <span className="text-cyber-sunrise">Vielfalt</span>
+            </h2>
+            <div className="space-y-4 text-white/85 leading-relaxed">
+              <p>
+                Diese KI-Konsolidierung verandert nicht nur, was und wie wir
+                Software bauen, sondern wie wir als Organisation arbeiten,
+                lernen und entscheiden. Ich begleite Unternehmen aller Groessen
+                dabei, Kuenstliche Intelligenz nicht als Schlagwort, sondern als
+                Werkzeug zu nutzen.
+              </p>
+              <p>
+                Meine Schulungen sind hands-on, meine Beratung ehrlich und
+                meine Softwareprojekte produktionsreif - ich helfe euch,
+                Klarheit ueber das eigene KI-Vorhaben zu gewinnen und es
+                Schritt fuer Schritt umzusetzen.
+              </p>
+            </div>
+          </div>
+
+          <div className="rounded-soft border border-white/10 bg-white/5 p-6 lumin-frost">
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-soft mb-5 bg-gradient-to-br from-weltraum-blau via-cyber-violett/40 to-cyber-pink/30">
+              <Image
+                src="/portrait.jpg"
+                alt="Stefan Mueller, Gruender von StefanAI"
+                fill
+                sizes="(min-width: 1024px) 360px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="heading text-2xl text-white">Stefan Mueller</p>
+              <p className="text-sm text-cyber-tuerkis ki-highlight mt-1">
+                Gruender StefanAI
+              </p>
+              <p className="text-sm text-white/70 mt-3 leading-relaxed">
+                Jahrgang 1982 aus Koeln. Tatig im Bereich KI mit Schulungen,
+                Beratung und Softwareentwicklung. Dozent u.a. bei dbb akademie
+                und Haufe Akademie.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats-Bar mit Cyber-Sunrise */}
+      <section className="bg-cyber-sunrise text-weltraum-blau py-14 lumin-frost relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+          {[
+            { k: "2.240+", v: "Schulungstage" },
+            { k: "103+", v: "Beratungen" },
+            { k: "449.879", v: "Zeilen Programmiercode" },
+          ].map((item) => (
+            <div key={item.v}>
+              <div className="heading text-5xl sm:text-6xl">{item.k}</div>
+              <div className="text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">
+                {item.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Service-Karten (Dabei helfe ich weiter) */}
+      <ServiceCards />
 
       {/* Highlights */}
       {highlights.length > 0 && (
         <section className="max-w-6xl mx-auto px-6 py-16">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">
-                Empfehlungen der Redaktion
-              </p>
-              <h2 className="heading text-4xl">Highlights</h2>
-            </div>
-          </div>
+          <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">
+            Empfehlungen
+          </p>
+          <h2 className="heading text-4xl mb-8">Highlight-Schulungen</h2>
           <div className="grid sm:grid-cols-2 gap-6">
             {highlights.map((s) => (
               <SchulungCard key={s._id} s={s} />
@@ -137,11 +185,9 @@ export default async function HomePage() {
           </p>
           <h2 className="heading-caps text-4xl">Alle Schulungen</h2>
           <p className="mt-3 text-white/70 max-w-2xl">
-            Alle Inhalte werden in Sanity gepflegt. Unter{" "}
-            <Link href="/studio" className="text-cyber-pink underline underline-offset-4">
-              /studio
-            </Link>{" "}
-            kannst du Schulungen anlegen, bearbeiten und veroeffentlichen.
+            Praxisnahe KI-Schulungen - online, in Praesenz oder hybrid.
+            Inhalte werden in Sanity gepflegt und sind dort jederzeit
+            erweiterbar.
           </p>
         </div>
 
@@ -177,107 +223,6 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-
-      {/* Leistungsuebersicht (SEO-Pillar) */}
-      <section id="leistungen" className="max-w-6xl mx-auto px-6 py-16">
-        <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">Leistungen</p>
-        <h2 className="heading text-4xl mb-3">
-          Drei Saeulen rund um <span className="text-cyber-sunrise">Kuenstliche Intelligenz</span>
-        </h2>
-        <p className="text-white/70 max-w-2xl mb-10">
-          Von der ersten Einordnung bis zum produktiven KI-System - wir
-          begleiten Unternehmen in DACH ueber den gesamten KI-Lebenszyklus.
-        </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          <article className="rounded-soft border border-white/10 bg-white/5 p-6">
-            <h3 className="heading text-2xl mb-2">
-              KI-Schulungen
-            </h3>
-            <p className="text-sm text-white/75 leading-relaxed">
-              Praxisnahe Schulungen zu Kuenstlicher Intelligenz - vom
-              Strategie-Workshop fuer Entscheider ueber Prompt Engineering
-              und Retrieval Augmented Generation bis zum Hands-on Aufbau
-              eigener AI Agents. Online, Praesenz oder Hybrid, individuell
-              fuer dein Team zugeschnitten.
-            </p>
-            <Link
-              href="#schulungen"
-              className="mt-4 inline-block text-cyber-pink text-sm font-semibold hover:underline underline-offset-4"
-            >
-              Zum Schulungsportfolio &rarr;
-            </Link>
-          </article>
-          <article className="rounded-soft border border-white/10 bg-white/5 p-6">
-            <h3 className="heading text-2xl mb-2">KI-Beratung</h3>
-            <p className="text-sm text-white/75 leading-relaxed">
-              Strategische Beratung zu Kuenstlicher Intelligenz: Use-Case
-              Discovery, Roadmap, Make-or-Buy, Governance und Compliance mit
-              EU AI Act und DSGVO. Wir helfen Geschaeftsfuehrung und IT, die
-              richtigen KI-Vorhaben zu priorisieren und sauber umzusetzen.
-            </p>
-            <Link
-              href="#kontakt"
-              className="mt-4 inline-block text-cyber-pink text-sm font-semibold hover:underline underline-offset-4"
-            >
-              Beratung anfragen &rarr;
-            </Link>
-          </article>
-          <article className="rounded-soft border border-white/10 bg-white/5 p-6">
-            <h3 className="heading text-2xl mb-2">
-              KI-Software-Entwicklung
-            </h3>
-            <p className="text-sm text-white/75 leading-relaxed">
-              Massgeschneiderte Software-Entwicklung mit Generativer KI -
-              von RAG-Systemen und Wissens-Chatbots ueber AI Agents bis zu
-              vollintegrierten Workflow-Automatisierungen. Wir bauen
-              produktionsreife KI-Anwendungen mit klarem Qualitaets- und
-              Kostenrahmen.
-            </p>
-            <Link
-              href="#kontakt"
-              className="mt-4 inline-block text-cyber-pink text-sm font-semibold hover:underline underline-offset-4"
-            >
-              Projekt besprechen &rarr;
-            </Link>
-          </article>
-        </div>
-      </section>
-
-      {/* Ueber */}
-      <section id="ueber" className="max-w-6xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">Ueber StefanAI</p>
-            <h2 className="heading text-4xl mb-6">
-              Praxis statt <span className="text-cyber-sunrise">Buzzwords</span>.
-            </h2>
-            <p className="text-white/80 leading-relaxed">
-              StefanAI begleitet Organisationen seit Jahren beim Einsatz von
-              Kuenstlicher Intelligenz - von der ersten Strategie-Session bis
-              zum produktiven Multi-Agent-System. Unsere Schulungen sind
-              hands-on, ehrlich und vermeiden den ueblichen KI-Hype. Als
-              Spezialist fuer KI-Schulung, KI-Beratung und KI-Software-
-              Entwicklung sind wir Ansprechpartner fuer Mittelstand und Konzerne
-              im deutschsprachigen Raum.
-            </p>
-          </div>
-          <div className="rounded-soft border border-white/10 bg-white/5 p-8 lumin-frost">
-            <ul className="space-y-4 text-sm text-white/85">
-              {[
-                "Trainer:innen mit echter Projekterfahrung",
-                "Maximal 12 Teilnehmende pro Workshop",
-                "Materialien und Aufzeichnung inklusive",
-                "Optionales 1:1 Follow-Up nach 30 Tagen",
-              ].map((p) => (
-                <li key={p} className="flex items-start gap-3">
-                  <span className="mt-1 inline-block w-2 h-2 rounded-full bg-cyber-sunrise shrink-0" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
 
       {/* Kontakt */}
       <section id="kontakt" className="max-w-6xl mx-auto px-6 py-20">
