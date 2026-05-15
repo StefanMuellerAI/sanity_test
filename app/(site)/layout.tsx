@@ -41,8 +41,8 @@ export default function SiteLayout({
       <main className="flex-1">{children}</main>
 
       <footer className="border-t border-white/10 mt-24">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid gap-6 sm:grid-cols-3 text-sm text-white/70">
-          <div>
+        <div className="max-w-6xl mx-auto px-6 py-10 grid gap-6 sm:grid-cols-4 text-sm text-white/70">
+          <div className="sm:col-span-1">
             <Logo className="h-9 w-auto mb-3" />
             <p>KI-Schulungen mit Substanz. Made with Sanity & Next.js.</p>
           </div>
@@ -54,6 +54,13 @@ export default function SiteLayout({
               <li><Link href="/#ueber" className="hover:text-cyber-pink">Ueber</Link></li>
               <li><Link href="/#kontakt" className="hover:text-cyber-pink">Kontakt</Link></li>
               <li><Link href="/studio" className="hover:text-cyber-pink">Sanity Studio</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="heading text-base text-white mb-2">Rechtliches</h3>
+            <ul className="space-y-1">
+              <li><Link href="/impressum" className="hover:text-cyber-pink">Impressum</Link></li>
+              <li><Link href="/datenschutz" className="hover:text-cyber-pink">Datenschutz</Link></li>
             </ul>
           </div>
           <div>
