@@ -291,3 +291,385 @@ export const sampleBlogPosts: SampleBlogPost[] = [
     ],
   },
 ];
+
+// --- Team ---
+
+export type SampleTeamMitglied = {
+  _id: string;
+  name: string;
+  rolle?: string;
+  kurztext?: string;
+  bio?: string[];
+  email?: string;
+  linkedin?: string;
+  website?: string;
+};
+
+export const sampleTeam: SampleTeamMitglied[] = [
+  {
+    _id: "team-1",
+    name: "Stefan Mueller",
+    rolle: "Gruender & Lead Trainer",
+    kurztext:
+      "Begleitet seit ueber 15 Jahren Unternehmen bei Digitalisierungs- und KI-Projekten. Schwerpunkte: Strategie, Architektur, GenAI.",
+    bio: [
+      "Stefan ist Diplom-Informatiker und arbeitet seit ueber 15 Jahren an der Schnittstelle von Software, Daten und Strategie.",
+      "Vor StefanAI war er als Softwarearchitekt und Berater fuer Mittelstand und Konzerne taetig. Seine Schulungen sind bekannt fuer pragmatische Beispiele und ehrliche Einordnung.",
+    ],
+    email: "stefan@stefanai.example",
+    linkedin: "https://www.linkedin.com/in/example",
+  },
+  {
+    _id: "team-2",
+    name: "Lena Hofmann",
+    rolle: "Senior AI Engineer",
+    kurztext:
+      "Baut RAG- und Agenten-Systeme fuer Kunden aus Industrie und Finance. Bringt die Welt der Forschung in den Workshop.",
+    bio: [
+      "Lena hat in Tuebingen Machine Learning studiert und arbeitet seit ueber sechs Jahren produktiv mit grossen Sprachmodellen.",
+      "Im Workshop ist sie diejenige, die unbequeme Fragen liebt - und meistens beantworten kann.",
+    ],
+    email: "lena@stefanai.example",
+  },
+  {
+    _id: "team-3",
+    name: "Jonas Becker",
+    rolle: "AI Strategy Consultant",
+    kurztext:
+      "Uebersetzt zwischen Geschaeftsfuehrung und IT. Spezialgebiet: Use-Case-Portfolio und Governance.",
+    bio: [
+      "Jonas kommt aus dem Management Consulting und hat in den letzten drei Jahren ueber 40 KI-Roadmaps mit Kunden erarbeitet.",
+    ],
+    email: "jonas@stefanai.example",
+  },
+  {
+    _id: "team-4",
+    name: "Mira Sandberg",
+    rolle: "Pressereferentin & Communications",
+    kurztext:
+      "Erste Anlaufstelle fuer Journalist:innen. Koordiniert Interviews, Statements und Pressemitteilungen.",
+    bio: [
+      "Mira hat in Berlin Kommunikationswissenschaft studiert und ist seit vier Jahren bei StefanAI fuer Presse und Oeffentlichkeitsarbeit verantwortlich.",
+    ],
+    email: "presse@stefanai.example",
+  },
+];
+
+// --- Pressekontakt ---
+
+export type SamplePressekontakt = {
+  name: string;
+  rolle?: string;
+  email?: string;
+  telefon?: string;
+  linkedin?: string;
+  kurztext?: string;
+};
+
+export const samplePressekontakt: SamplePressekontakt = {
+  name: "Mira Sandberg",
+  rolle: "Pressereferentin",
+  email: "presse@stefanai.example",
+  telefon: "+49 (0) 000 000000",
+  linkedin: "https://www.linkedin.com/in/example",
+  kurztext:
+    "Anfragen zu Interviews, Statements und O-Toenen bitte direkt an Mira. Antwort in der Regel innerhalb eines Werktages.",
+};
+
+// --- Presseveroeffentlichungen ---
+
+export type SamplePresseveroeffentlichung = {
+  _id: string;
+  titel: string;
+  url: string;
+  medium?: string;
+  datum?: string;
+  kurzbeschreibung?: string;
+  art?: string;
+};
+
+export const samplePressestimmen: SamplePresseveroeffentlichung[] = [
+  {
+    _id: "presse-1",
+    titel: "Wie KI den Mittelstand veraendert - Stefan Mueller im Interview",
+    url: "https://example.com/artikel-1",
+    medium: "Wirtschaftswoche",
+    datum: "2026-04-08",
+    kurzbeschreibung:
+      "Ueber Use Cases jenseits des Hypes und die Frage, was Geschaeftsfuehrungen jetzt wirklich tun sollten.",
+    art: "Interview",
+  },
+  {
+    _id: "presse-2",
+    titel: "RAG in Production: Pragmatischer Leitfaden fuer Teams",
+    url: "https://example.com/artikel-2",
+    medium: "heise online",
+    datum: "2026-02-21",
+    kurzbeschreibung:
+      "Gastbeitrag mit Architektur-Empfehlungen, der seither hundertfach in Tech-Newslettern zitiert wird.",
+    art: "Artikel",
+  },
+  {
+    _id: "presse-3",
+    titel: "Folge 42: Was der EU AI Act fuer Entwickler bedeutet",
+    url: "https://example.com/podcast-3",
+    medium: "Programmier Bar Podcast",
+    datum: "2026-01-15",
+    kurzbeschreibung:
+      "90 Minuten Tiefgang zu Risikoklassen, Fristen und konkreten Umsetzungsschritten.",
+    art: "Podcast",
+  },
+  {
+    _id: "presse-4",
+    titel: "Die 50 wichtigsten KI-Experten in DACH 2026",
+    url: "https://example.com/ranking-4",
+    medium: "t3n",
+    datum: "2025-11-30",
+    kurzbeschreibung:
+      "StefanAI im jaehrlichen Ranking der einflussreichsten KI-Stimmen im deutschsprachigen Raum.",
+    art: "Artikel",
+  },
+];
+
+// --- Pressekits ---
+
+export type SamplePressekit = {
+  _id: string;
+  titel: string;
+  beschreibung?: string;
+  kategorie?: string;
+  url?: string;
+  groesse?: number;
+  dateiname?: string;
+  mime?: string;
+};
+
+export const samplePressekits: SamplePressekit[] = [
+  {
+    _id: "kit-1",
+    titel: "Pressemappe 2026",
+    beschreibung:
+      "Unternehmens-Factsheet, Kurzbiografien und aktuelle Pressefotos als kompaktes PDF.",
+    kategorie: "Pressemappe",
+    dateiname: "stefanai-pressemappe-2026.pdf",
+    mime: "application/pdf",
+  },
+  {
+    _id: "kit-2",
+    titel: "Logo-Paket",
+    beschreibung:
+      "StefanAI Logo in SVG, PNG und EPS - hell und dunkel, mit Schutzraum-Hinweisen.",
+    kategorie: "Logo-Paket",
+    dateiname: "stefanai-logos.zip",
+    mime: "application/zip",
+  },
+  {
+    _id: "kit-3",
+    titel: "Bildpaket Team",
+    beschreibung:
+      "Hochaufloesende Portraitfotos des StefanAI-Teams zur honorarfreien Veroeffentlichung.",
+    kategorie: "Bilder",
+    dateiname: "stefanai-team-bilder.zip",
+    mime: "application/zip",
+  },
+  {
+    _id: "kit-4",
+    titel: "Factsheet KI-Schulungen",
+    beschreibung:
+      "Einseitige Uebersicht ueber das Schulungsportfolio mit Zielgruppen und Formaten.",
+    kategorie: "Factsheet",
+    dateiname: "stefanai-factsheet.pdf",
+    mime: "application/pdf",
+  },
+];
+
+// --- Rechtsseiten ---
+
+export type SampleRechtsseite = {
+  _id: string;
+  titel: string;
+  slug: string;
+  untertitel?: string;
+  inhalt: { _key: string; ueberschrift?: string; absaetze: string[] }[];
+  aktualisiertAm?: string;
+};
+
+export const sampleRechtsseiten: SampleRechtsseite[] = [
+  {
+    _id: "rs-impressum",
+    titel: "Impressum",
+    slug: "impressum",
+    untertitel:
+      "Angaben gemaess Paragraph 5 DDG (Digitale-Dienste-Gesetz, vormals TMG).",
+    aktualisiertAm: "2026-05-01",
+    inhalt: [
+      {
+        _key: "anbieter",
+        ueberschrift: "Anbieter",
+        absaetze: [
+          "Stefan Mueller",
+          "StefanAI",
+          "Musterstrasse 1",
+          "12345 Musterstadt",
+          "Deutschland",
+        ],
+      },
+      {
+        _key: "kontakt",
+        ueberschrift: "Kontakt",
+        absaetze: [
+          "Telefon: +49 (0) 000 000000",
+          "E-Mail: hallo@stefanai.example",
+          "Web: stefanai.de",
+        ],
+      },
+      {
+        _key: "ustid",
+        ueberschrift: "Umsatzsteuer-ID",
+        absaetze: [
+          "Umsatzsteuer-Identifikationsnummer gemaess Paragraph 27a Umsatzsteuergesetz: DE000000000",
+        ],
+      },
+      {
+        _key: "verantwortlich",
+        ueberschrift: "Redaktionell verantwortlich",
+        absaetze: ["Stefan Mueller (Anschrift wie oben)"],
+      },
+      {
+        _key: "eu",
+        ueberschrift: "EU-Streitschlichtung",
+        absaetze: [
+          "Die Europaeische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse findest du oben.",
+        ],
+      },
+      {
+        _key: "verbraucher",
+        ueberschrift: "Verbraucherstreitbeilegung",
+        absaetze: [
+          "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+        ],
+      },
+      {
+        _key: "haftung-inhalte",
+        ueberschrift: "Haftung fuer Inhalte",
+        absaetze: [
+          "Als Diensteanbieter sind wir gemaess Paragraph 7 Absatz 1 DDG fuer eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach Paragraphen 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, uebermittelte oder gespeicherte fremde Informationen zu ueberwachen.",
+          "Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberuehrt. Bei Bekanntwerden von Rechtsverletzungen werden wir die entsprechenden Inhalte umgehend entfernen.",
+        ],
+      },
+      {
+        _key: "haftung-links",
+        ueberschrift: "Haftung fuer Links",
+        absaetze: [
+          "Unser Angebot enthaelt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.",
+        ],
+      },
+      {
+        _key: "urheber",
+        ueberschrift: "Urheberrecht",
+        absaetze: [
+          "Die durch den Seitenbetreiber erstellten Inhalte unterliegen dem deutschen Urheberrecht. Downloads und Kopien dieser Seite sind nur fuer den privaten, nicht kommerziellen Gebrauch gestattet.",
+        ],
+      },
+    ],
+  },
+  {
+    _id: "rs-datenschutz",
+    titel: "Datenschutz",
+    slug: "datenschutz",
+    untertitel:
+      "Informationen gemaess Artikel 13 und 14 DSGVO zur Verarbeitung personenbezogener Daten.",
+    aktualisiertAm: "2026-05-01",
+    inhalt: [
+      {
+        _key: "verantwortlicher",
+        ueberschrift: "1. Verantwortlicher",
+        absaetze: [
+          "Verantwortlicher im Sinne der DSGVO ist:",
+          "Stefan Mueller, StefanAI, Musterstrasse 1, 12345 Musterstadt, Deutschland",
+          "E-Mail: hallo@stefanai.example",
+        ],
+      },
+      {
+        _key: "allgemein",
+        ueberschrift: "2. Allgemeines zur Datenverarbeitung",
+        absaetze: [
+          "Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer funktionsfaehigen Website sowie unserer Inhalte erforderlich ist. Rechtsgrundlagen sind regelmaessig Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), Vertragserfuellung (lit. b) oder berechtigte Interessen (lit. f).",
+        ],
+      },
+      {
+        _key: "logs",
+        ueberschrift: "3. Server-Logs",
+        absaetze: [
+          "Beim Aufruf der Website werden vom Hostinganbieter automatisch IP-Adresse, Datum, Uhrzeit, aufgerufene URL, Referrer und Browser uebermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.",
+        ],
+      },
+      {
+        _key: "vercel",
+        ueberschrift: "4. Hosting bei Vercel",
+        absaetze: [
+          "Diese Website wird bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA gehostet. Vercel hat sich dem EU-US Data Privacy Framework unterworfen.",
+          "Datenschutzerklaerung von Vercel: https://vercel.com/legal/privacy-policy",
+        ],
+      },
+      {
+        _key: "sanity",
+        ueberschrift: "5. Content-Management mit Sanity",
+        absaetze: [
+          "Inhalte werden ueber das CMS Sanity (Sanity.io AS, Stranden 1A, 0250 Oslo, Norwegen) bereitgestellt. Beim Abruf von Inhalten wird die IP-Adresse zur Auslieferung verwendet (Art. 6 Abs. 1 lit. f DSGVO).",
+          "Datenschutzerklaerung von Sanity: https://www.sanity.io/legal/privacy",
+        ],
+      },
+      {
+        _key: "fonts",
+        ueberschrift: "6. Schriftarten",
+        absaetze: [
+          "Wir nutzen Bree Serif, Montserrat und Oxanium. Die Auslieferung erfolgt selbstgehostet ueber die Schriftoptimierung von Next.js - es findet kein direkter Aufruf der Google-Server statt.",
+        ],
+      },
+      {
+        _key: "video",
+        ueberschrift: "7. Eingebettete Videos",
+        absaetze: [
+          "In Blog-Beitraegen koennen YouTube- oder Vimeo-Videos eingebettet sein. Erst beim Klick werden Daten an die Anbieter uebermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.",
+        ],
+      },
+      {
+        _key: "kontakt",
+        ueberschrift: "8. Kontaktaufnahme",
+        absaetze: [
+          "Bei Kontaktaufnahme per E-Mail verarbeiten wir die uebermittelten Daten zur Bearbeitung der Anfrage. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO.",
+        ],
+      },
+      {
+        _key: "downloads",
+        ueberschrift: "9. PDF-Downloads",
+        absaetze: [
+          "PDF-Downloads im Blog und im Pressebereich sind ohne Registrierung und ohne Angabe personenbezogener Daten moeglich.",
+        ],
+      },
+      {
+        _key: "cookies",
+        ueberschrift: "10. Cookies",
+        absaetze: [
+          "Diese Website setzt keine Cookies zu Tracking- oder Marketingzwecken ein. Technisch notwendige Cookies (z.B. fuer Studio-Sitzungen unter /studio) koennen lokal im Browser gespeichert werden.",
+        ],
+      },
+      {
+        _key: "rechte",
+        ueberschrift: "11. Rechte der betroffenen Personen",
+        absaetze: [
+          "Du hast Rechte auf Auskunft (Art. 15), Berichtigung (Art. 16), Loeschung (Art. 17), Einschraenkung (Art. 18), Datenuebertragbarkeit (Art. 20), Widerspruch (Art. 21) und Widerruf erteilter Einwilligungen (Art. 7 Abs. 3) sowie ein Beschwerderecht bei einer Aufsichtsbehoerde (Art. 77).",
+          "Bitte richte entsprechende Anfragen an die oben genannte E-Mail-Adresse.",
+        ],
+      },
+      {
+        _key: "aenderung",
+        ueberschrift: "12. Aenderung dieser Datenschutzerklaerung",
+        absaetze: [
+          "Wir behalten uns vor, diese Datenschutzerklaerung anzupassen. Es gilt jeweils die zum Zeitpunkt des Besuchs abrufbare Fassung.",
+        ],
+      },
+    ],
+  },
+];

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
+import { CourseJsonLd } from "@/components/structured-data";
 import { getAllSlugs, getSchulungBySlug } from "@/sanity/lib/fetch";
 
 export const revalidate = 60;
@@ -19,8 +20,17 @@ export async function generateMetadata({
   const s = await getSchulungBySlug(slug);
   if (!s) return { title: "Schulung nicht gefunden" };
   return {
-    title: `${s.titel} - StefanAI`,
-    description: s.kurzbeschreibung,
+    title: `${s.titel} - KI-Schulung`,
+    description:
+      s.kurzbeschreibung ||
+      `Kuenstliche Intelligenz Schulung: ${s.titel}. Praxisnaher KI-Workshop von StefanAI.`,
+    alternates: { canonical: `/schulungen/${s.slug}` },
+    openGraph: {
+      type: "article",
+      title: `${s.titel} - KI-Schulung`,
+      description: s.kurzbeschreibung,
+      url: `/schulungen/${s.slug}`,
+    },
   };
 }
 
@@ -42,6 +52,12 @@ export default async function SchulungPage({
 
   return (
     <article className="max-w-4xl mx-auto px-6 py-16">
+      <CourseJsonLd
+        titel={s.titel}
+        beschreibung={s.kurzbeschreibung}
+        slug={s.slug}
+        format={s.format}
+      />
       <Link
         href="/#schulungen"
         className="text-sm text-cyber-tuerkis hover:text-cyber-pink"

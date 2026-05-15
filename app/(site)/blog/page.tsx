@@ -4,9 +4,10 @@ import { getAllBlogPosts } from "@/sanity/lib/fetch";
 export const revalidate = 60;
 
 export const metadata = {
-  title: "Blog - StefanAI",
+  title: "KI-Blog: Artikel, Checklisten & Argumentationshilfen",
   description:
-    "Artikel, Checklisten und Argumentationshilfen rund um KI im Unternehmen.",
+    "Aktuelle Artikel rund um Kuenstliche Intelligenz im Unternehmen - mit kostenlosen Checklisten, Argumentationshilfen und Vorlagen als PDF.",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function BlogIndexPage() {

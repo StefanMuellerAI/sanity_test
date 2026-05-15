@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PortableText, type PortableTextBlock } from "@portabletext/react";
 import { DownloadList } from "@/components/download-list";
 import { VideoEmbed } from "@/components/video-embed";
+import { BlogPostingJsonLd } from "@/components/structured-data";
 import { getAllBlogSlugs, getBlogPostBySlug } from "@/sanity/lib/fetch";
 
 export const revalidate = 60;
@@ -21,8 +22,17 @@ export async function generateMetadata({
   const p = await getBlogPostBySlug(slug);
   if (!p) return { title: "Beitrag nicht gefunden" };
   return {
-    title: `${p.titel} - StefanAI Blog`,
+    title: p.titel,
     description: p.untertitel,
+    alternates: { canonical: `/blog/${p.slug}` },
+    openGraph: {
+      type: "article",
+      title: p.titel,
+      description: p.untertitel,
+      url: `/blog/${p.slug}`,
+      publishedTime: p.veroeffentlichtAm,
+      authors: p.autor ? [p.autor] : undefined,
+    },
   };
 }
 
@@ -55,6 +65,13 @@ export default async function BlogPostPage({
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
+      <BlogPostingJsonLd
+        titel={p.titel}
+        beschreibung={p.untertitel}
+        slug={p.slug}
+        datum={p.veroeffentlichtAm}
+        autor={p.autor}
+      />
       <Link href="/blog" className="text-sm text-cyber-tuerkis hover:text-cyber-pink">
         &larr; Zurueck zum Blog
       </Link>

@@ -1,6 +1,11 @@
-// Bettet ein Begleitvideo ein - akzeptiert YouTube-, Vimeo- oder direkt eine
-// Video-Datei-URL (mp4/webm/...). Faellt auf einen einfachen Link zurueck,
-// wenn das Format nicht erkannt wird.
+"use client";
+
+// Click-to-Load Embed - laedt YouTube/Vimeo erst nach explizitem Klick.
+// Bis zum Klick werden KEINE Cookies oder Daten an Drittanbieter
+// uebertragen, daher ist auch kein Cookie-Banner noetig. Direkte Video-
+// Dateien (mp4 etc.) werden nativ ohne Drittanbieter geladen.
+
+import { useState } from "react";
 
 type Props = {
   url?: string;
@@ -36,6 +41,7 @@ function isDirectVideo(url: string): boolean {
 }
 
 export function VideoEmbed({ url, dateiUrl, beschriftung }: Props) {
+  const [aktiviert, setAktiviert] = useState(false);
   const src = dateiUrl || url;
   if (!src) return null;
 
@@ -43,26 +49,13 @@ export function VideoEmbed({ url, dateiUrl, beschriftung }: Props) {
   const vimeoId = url ? getVimeoId(url) : null;
   const direct = dateiUrl || (url && isDirectVideo(url) ? url : null);
 
+  const anbieter = ytId ? "YouTube" : vimeoId ? "Vimeo" : null;
+  const benoetigtConsent = Boolean(anbieter);
+
   return (
     <figure className="my-8">
       <div className="relative aspect-video rounded-soft overflow-hidden border border-white/10 bg-black">
-        {ytId ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${ytId}`}
-            title="Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        ) : vimeoId ? (
-          <iframe
-            src={`https://player.vimeo.com/video/${vimeoId}`}
-            title="Video"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        ) : direct ? (
+        {direct ? (
           <video
             controls
             preload="metadata"
@@ -70,7 +63,7 @@ export function VideoEmbed({ url, dateiUrl, beschriftung }: Props) {
           >
             <source src={direct} />
           </video>
-        ) : (
+        ) : !benoetigtConsent ? (
           <a
             href={src}
             target="_blank"
@@ -79,6 +72,49 @@ export function VideoEmbed({ url, dateiUrl, beschriftung }: Props) {
           >
             Video oeffnen
           </a>
+        ) : aktiviert && ytId ? (
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1`}
+            title="Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        ) : aktiviert && vimeoId ? (
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}?dnt=1&autoplay=1`}
+            title="Video"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setAktiviert(true)}
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center bg-gradient-to-br from-weltraum-blau via-weltraum-blau/95 to-cyber-violett/40 hover:from-weltraum-blau hover:to-cyber-violett/60 transition"
+            aria-label={`${anbieter}-Video laden`}
+          >
+            <span className="w-16 h-16 rounded-full bg-cyber-sunrise text-weltraum-blau flex items-center justify-center text-2xl">
+              &#9658;
+            </span>
+            <span className="heading text-xl text-white">
+              {anbieter}-Video laden
+            </span>
+            <span className="text-xs text-white/70 max-w-md leading-relaxed">
+              Beim Klick wird eine Verbindung zu {anbieter} hergestellt. Es koennen
+              dabei Daten (z.B. IP-Adresse, Cookies) an {anbieter} uebertragen
+              werden. Mehr dazu in unserer{" "}
+              <a
+                href="/datenschutz"
+                className="underline text-cyber-tuerkis hover:text-cyber-pink"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Datenschutzerklaerung
+              </a>
+              .
+            </span>
+          </button>
         )}
       </div>
       {beschriftung && (
