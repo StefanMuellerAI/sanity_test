@@ -1,11 +1,19 @@
 import { client } from "./client";
 import { isSanityConfigured } from "../env";
 import {
+  allBlogPostsQuery,
+  allBlogSlugsQuery,
   allSchulungenQuery,
   allSlugsQuery,
+  blogPostBySlugQuery,
   schulungBySlugQuery,
 } from "./queries";
-import { sampleSchulungen, type SampleSchulung } from "./sample-data";
+import {
+  sampleBlogPosts,
+  sampleSchulungen,
+  type SampleBlogPost,
+  type SampleSchulung,
+} from "./sample-data";
 
 export type SchulungListItem = {
   _id: string;
@@ -66,4 +74,96 @@ export async function getAllSlugs(): Promise<string[]> {
   const data = await client.fetch<string[]>(allSlugsQuery);
   const sampleSlugs = sampleSchulungen.map((s) => s.slug);
   return Array.from(new Set([...(data || []), ...sampleSlugs]));
+}
+
+export type BlogPostListItem = {
+  _id: string;
+  titel: string;
+  slug: string;
+  untertitel?: string;
+  veroeffentlichtAm?: string;
+  autor?: string;
+  headerbild?: unknown;
+  tags?: string[];
+  downloadAnzahl?: number;
+  hatVideo?: boolean;
+};
+
+export type BlogPostDownload = {
+  _key?: string;
+  titel: string;
+  beschreibung?: string;
+  kategorie?: string;
+  url?: string;
+  groesse?: number;
+  dateiname?: string;
+};
+
+export type BlogPostDetail = BlogPostListItem & {
+  text?: unknown;
+  video?: {
+    url?: string;
+    beschriftung?: string;
+    dateiUrl?: string;
+    poster?: unknown;
+  };
+  downloads?: BlogPostDownload[];
+};
+
+export async function getAllBlogPosts(): Promise<BlogPostListItem[]> {
+  if (!isSanityConfigured || !client) {
+    return sampleBlogPosts.map(sampleBlogAsListItem);
+  }
+  const data = await client.fetch<BlogPostListItem[]>(allBlogPostsQuery);
+  if (!data || data.length === 0) {
+    return sampleBlogPosts.map(sampleBlogAsListItem);
+  }
+  return data;
+}
+
+export async function getBlogPostBySlug(
+  slug: string
+): Promise<BlogPostDetail | null> {
+  if (!isSanityConfigured || !client) {
+    const found = sampleBlogPosts.find((p) => p.slug === slug);
+    return found ? sampleBlogAsDetail(found) : null;
+  }
+  const data = await client.fetch<BlogPostDetail | null>(blogPostBySlugQuery, {
+    slug,
+  });
+  if (data) return data;
+  const fallback = sampleBlogPosts.find((p) => p.slug === slug);
+  return fallback ? sampleBlogAsDetail(fallback) : null;
+}
+
+export async function getAllBlogSlugs(): Promise<string[]> {
+  if (!isSanityConfigured || !client) {
+    return sampleBlogPosts.map((p) => p.slug);
+  }
+  const data = await client.fetch<string[]>(allBlogSlugsQuery);
+  const sampleSlugs = sampleBlogPosts.map((p) => p.slug);
+  return Array.from(new Set([...(data || []), ...sampleSlugs]));
+}
+
+function sampleBlogAsListItem(p: SampleBlogPost): BlogPostListItem {
+  return {
+    _id: p._id,
+    titel: p.titel,
+    slug: p.slug,
+    untertitel: p.untertitel,
+    veroeffentlichtAm: p.veroeffentlichtAm,
+    autor: p.autor,
+    tags: p.tags,
+    downloadAnzahl: p.downloads?.length ?? 0,
+    hatVideo: Boolean(p.video?.url),
+  };
+}
+
+function sampleBlogAsDetail(p: SampleBlogPost): BlogPostDetail {
+  return {
+    ...sampleBlogAsListItem(p),
+    text: p.text,
+    video: p.video,
+    downloads: p.downloads,
+  };
 }

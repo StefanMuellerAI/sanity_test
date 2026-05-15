@@ -18,6 +18,9 @@ export default function SiteLayout({
             <Link href="/#schulungen" className="hover:text-cyber-pink transition">
               Schulungen
             </Link>
+            <Link href="/blog" className="hover:text-cyber-pink transition">
+              Blog
+            </Link>
             <Link href="/#ueber" className="hover:text-cyber-pink transition">
               Ueber
             </Link>
@@ -47,6 +50,7 @@ export default function SiteLayout({
             <h3 className="heading text-base text-white mb-2">Navigation</h3>
             <ul className="space-y-1">
               <li><Link href="/#schulungen" className="hover:text-cyber-pink">Schulungen</Link></li>
+              <li><Link href="/blog" className="hover:text-cyber-pink">Blog</Link></li>
               <li><Link href="/#ueber" className="hover:text-cyber-pink">Ueber</Link></li>
               <li><Link href="/#kontakt" className="hover:text-cyber-pink">Kontakt</Link></li>
               <li><Link href="/studio" className="hover:text-cyber-pink">Sanity Studio</Link></li>

@@ -1,13 +1,18 @@
 import Link from "next/link";
+import { BlogCard } from "@/components/blog-card";
 import { SchulungCard } from "@/components/schulung-card";
-import { getAllSchulungen } from "@/sanity/lib/fetch";
+import { getAllBlogPosts, getAllSchulungen } from "@/sanity/lib/fetch";
 import { isSanityConfigured } from "@/sanity/env";
 
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const schulungen = await getAllSchulungen();
+  const [schulungen, blogPosts] = await Promise.all([
+    getAllSchulungen(),
+    getAllBlogPosts(),
+  ]);
   const highlights = schulungen.filter((s) => s.highlight);
+  const neuesteBeitraege = blogPosts.slice(0, 3);
 
   return (
     <>
@@ -106,6 +111,32 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Blog */}
+      {neuesteBeitraege.length > 0 && (
+        <section id="blog" className="max-w-6xl mx-auto px-6 py-16">
+          <div className="flex items-end justify-between mb-8 gap-6 flex-wrap">
+            <div>
+              <p className="ki-highlight text-cyber-tuerkis text-xs mb-2">
+                Blog
+              </p>
+              <h2 className="heading text-4xl">Aktuelle Beitraege</h2>
+              <p className="mt-2 text-white/70 max-w-xl">
+                Artikel mit Begleitvideo und PDF-Downloads - Checklisten,
+                Argumentationshilfen und Vorlagen.
+              </p>
+            </div>
+            <Link href="/blog" className="btn-ghost">
+              Alle Beitraege
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {neuesteBeitraege.map((p) => (
+              <BlogCard key={p._id} p={p} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Ueber */}
       <section id="ueber" className="max-w-6xl mx-auto px-6 py-20">

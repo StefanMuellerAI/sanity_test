@@ -40,3 +40,51 @@ export const schulungBySlugQuery = groq`
 export const allSlugsQuery = groq`
 *[_type == "schulung" && defined(slug.current)][].slug.current
 `;
+
+export const allBlogPostsQuery = groq`
+*[_type == "blogPost"] | order(veroeffentlichtAm desc) {
+  _id,
+  titel,
+  "slug": slug.current,
+  untertitel,
+  veroeffentlichtAm,
+  autor,
+  headerbild,
+  tags,
+  "downloadAnzahl": count(downloads),
+  "hatVideo": defined(video.url) || defined(video.datei)
+}
+`;
+
+export const blogPostBySlugQuery = groq`
+*[_type == "blogPost" && slug.current == $slug][0] {
+  _id,
+  titel,
+  "slug": slug.current,
+  untertitel,
+  veroeffentlichtAm,
+  autor,
+  headerbild,
+  text,
+  tags,
+  video {
+    url,
+    beschriftung,
+    "dateiUrl": datei.asset->url,
+    poster
+  },
+  downloads[] {
+    _key,
+    titel,
+    beschreibung,
+    kategorie,
+    "url": datei.asset->url,
+    "groesse": datei.asset->size,
+    "dateiname": datei.asset->originalFilename
+  }
+}
+`;
+
+export const allBlogSlugsQuery = groq`
+*[_type == "blogPost" && defined(slug.current)][].slug.current
+`;
