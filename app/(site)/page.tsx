@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BlogCard } from "@/components/blog-card";
 import { SchulungCard } from "@/components/schulung-card";
@@ -47,28 +48,48 @@ export default async function HomePage() {
             </div>
           )}
 
-          <p className="ki-highlight text-cyber-tuerkis text-sm mb-6">
-            Kuenstliche Intelligenz fuer Unternehmen
-          </p>
-          <h1 className="heading-caps text-4xl sm:text-5xl lg:text-6xl max-w-4xl">
-            Kuenstliche Intelligenz{" "}
-            <span className="text-cyber-sunrise">
-              Schulung, Beratung & Software-Entwicklung
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/80 leading-relaxed">
-            StefanAI ist dein Partner fuer praxisnahe KI-Schulungen,
-            strategische KI-Beratung und massgeschneiderte Software-Entwicklung
-            mit Generativer KI. Wir bringen ChatGPT, RAG und AI Agents
-            verlaesslich in produktive Anwendungen.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="#schulungen" className="btn-primary">
-              Portfolio entdecken
-            </Link>
-            <Link href="#kontakt" className="btn-ghost">
-              Beratung anfragen
-            </Link>
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-12 items-center">
+            <div>
+              <p className="ki-highlight text-cyber-tuerkis text-sm mb-6">
+                Kuenstliche Intelligenz fuer Unternehmen
+              </p>
+              <h1 className="heading-caps text-4xl sm:text-5xl lg:text-6xl">
+                Kuenstliche Intelligenz{" "}
+                <span className="text-cyber-sunrise">
+                  Schulung, Beratung & Software-Entwicklung
+                </span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg text-white/80 leading-relaxed">
+                StefanAI ist dein Partner fuer praxisnahe KI-Schulungen,
+                strategische KI-Beratung und massgeschneiderte
+                Software-Entwicklung mit Generativer KI. Wir bringen ChatGPT,
+                RAG und AI Agents verlaesslich in produktive Anwendungen.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Link href="#schulungen" className="btn-primary">
+                  Portfolio entdecken
+                </Link>
+                <Link href="#kontakt" className="btn-ghost">
+                  Beratung anfragen
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative aspect-[4/3] lg:aspect-square w-full max-w-xl mx-auto lg:mx-0">
+              {/* Glow hinter dem Bild - betont die V-Form */}
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-cyber-sunrise opacity-30 blur-3xl rounded-full"
+              />
+              <Image
+                src="/keyvisual.png"
+                alt="Digit, der KI-Co-Host von StefanAI, haelt einen leuchtenden Wuerfel in einer Cyberpunk-Stadt"
+                fill
+                priority
+                sizes="(min-width: 1024px) 540px, (min-width: 640px) 80vw, 100vw"
+                className="relative object-contain drop-shadow-[0_20px_50px_rgba(230,46,116,0.35)]"
+              />
+            </div>
           </div>
 
           <dl className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl">
